@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://daey55hf1x0nw"]
+
+[ext_resource type="SphereMesh" uid="uid://cej1ww1d20ix2" path="res://Assets/Meshes/hazard_mesh.tres" id="1_35l37"]
+[ext_resource type="Texture2D" uid="uid://dychu6ivyv2pp" path="res://Assets/Textures/hazard_texture.tres" id="2_xuipq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wd3ju"]
+size = Vector2(10, 10)
+
+[node name="Hazard" type="RigidBody2D" groups=["Hazard"]]
+gravity_scale = 0.0
+
+[node name="Mesh" type="MeshInstance2D" parent="."]
+mesh = ExtResource("1_35l37")
+texture = ExtResource("2_xuipq")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wd3ju")

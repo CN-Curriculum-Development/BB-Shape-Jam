@@ -1,0 +1,5 @@
+[gd_resource type="CapsuleMesh" format=3 uid="uid://ci41buh3shm37"]
+
+[resource]
+radius = 10.0
+height = 40.0

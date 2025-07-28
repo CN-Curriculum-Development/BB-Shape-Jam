@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfwaxp7qxjjk8"]
+
+[ext_resource type="Script" uid="uid://dixbxcolho1fo" path="res://Scripts/enemy_controller.gd" id="1_ink2j"]
+[ext_resource type="BoxMesh" uid="uid://i6rgahs64eer" path="res://Assets/Meshes/enemy_mesh.tres" id="2_8ypxt"]
+[ext_resource type="Texture2D" uid="uid://bt6mdog6kf8qo" path="res://Assets/Textures/enemy_texture.tres" id="3_vm7cc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_osb2a"]
+size = Vector2(40, 40)
+
+[node name="Enemy" type="RigidBody2D" groups=["Enemy"]]
+gravity_scale = 0.0
+contact_monitor = true
+script = ExtResource("1_ink2j")
+enemy_speed = 2.0
+enemy_health = 10
+particle_size = 0.11
+explosion_radius = 0.2
+explosion_force = 500.0
+explosion_upward = 100.0
+enemy_texture = ExtResource("3_vm7cc")
+
+[node name="Mesh" type="MeshInstance2D" parent="."]
+mesh = ExtResource("2_8ypxt")
+texture = ExtResource("3_vm7cc")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_osb2a")

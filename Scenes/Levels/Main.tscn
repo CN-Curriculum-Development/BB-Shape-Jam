@@ -1,0 +1,117 @@
+[gd_scene load_steps=16 format=3 uid="uid://b420jd6ybrul7"]
+
+[ext_resource type="Script" uid="uid://cevypyow2wi83" path="res://Scripts/player_controls.gd" id="1_07780"]
+[ext_resource type="CapsuleMesh" uid="uid://ck77gcsngpo4g" path="res://Assets/Meshes/player_mesh.tres" id="1_vdr06"]
+[ext_resource type="Texture2D" uid="uid://d3kjw0umta3m5" path="res://Assets/Textures/player_texture.tres" id="2_t355s"]
+[ext_resource type="Script" uid="uid://dh2w4tce8gtfh" path="res://Scripts/powerup_controller.gd" id="4_d31q8"]
+[ext_resource type="Script" uid="uid://d1h7a3o4mnxka" path="res://Scripts/enemy_emitter_controller.gd" id="5_d31q8"]
+[ext_resource type="Script" uid="uid://c8xv83apapk6j" path="res://Scripts/game_space_controller.gd" id="6_dmpbk"]
+[ext_resource type="Script" uid="uid://dhchmep4ds4om" path="res://Scripts/star_generator.gd" id="7_r66ge"]
+[ext_resource type="FontFile" uid="uid://ccck25vsduay8" path="res://Assets/Fonts/PressStart2P.ttf" id="8_4ih0k"]
+[ext_resource type="Script" uid="uid://pfuc5mvqpnn4" path="res://Scripts/level_controller.gd" id="9_mv52a"]
+[ext_resource type="Script" uid="uid://n0df8xprus2o" path="res://Scripts/hp_controller.gd" id="10_otbr7"]
+[ext_resource type="Script" uid="uid://cb4vuxe6t5g5w" path="res://Scripts/score_controller.gd" id="11_5wxa7"]
+
+[sub_resource type="Environment" id="Environment_4ih0k"]
+background_mode = 1
+background_color = Color(0.156863, 0.156863, 0.156863, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_07780"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d31q8"]
+size = Vector2(800, 850)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dm2qe"]
+font = ExtResource("8_4ih0k")
+font_size = 12
+
+[node name="Main" type="Node2D"]
+
+[node name="Main Camera" type="Camera2D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Main Camera"]
+environment = SubResource("Environment_4ih0k")
+
+[node name="Audio Player" type="AudioStreamPlayer2D" parent="Main Camera"]
+
+[node name="Player" type="RigidBody2D" parent="." groups=["Player"]]
+position = Vector2(0, 250)
+gravity_scale = 0.0
+script = ExtResource("1_07780")
+
+[node name="Mesh" type="MeshInstance2D" parent="Player"]
+scale = Vector2(10, 10)
+mesh = ExtResource("1_vdr06")
+texture = ExtResource("2_t355s")
+
+[node name="Collision" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CircleShape2D_07780")
+
+[node name="Powerup Emitter" type="Node2D" parent="."]
+script = ExtResource("4_d31q8")
+
+[node name="Enemy Controller" type="Node2D" parent="."]
+position = Vector2(0, -400)
+script = ExtResource("5_d31q8")
+
+[node name="Waypoints" type="Node2D" parent="."]
+
+[node name="Waypoint 1" type="Node2D" parent="Waypoints"]
+position = Vector2(-500, -250)
+
+[node name="Waypoint 2" type="Node2D" parent="Waypoints"]
+position = Vector2(500, -250)
+
+[node name="Waypoint 3" type="Node2D" parent="Waypoints"]
+position = Vector2(0, -150)
+
+[node name="Waypoint 4" type="Node2D" parent="Waypoints"]
+position = Vector2(-500, -50)
+
+[node name="Waypoint 5" type="Node2D" parent="Waypoints"]
+position = Vector2(500, -50)
+
+[node name="Game Space" type="Area2D" parent="."]
+script = ExtResource("6_dmpbk")
+
+[node name="Collision" type="CollisionShape2D" parent="Game Space"]
+position = Vector2(0, -50)
+shape = SubResource("RectangleShape2D_d31q8")
+
+[node name="Star Field" type="Node2D" parent="."]
+script = ExtResource("7_r66ge")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Canvas" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 276.0
+offset_right = 876.0
+offset_bottom = 648.0
+
+[node name="Level" type="Label" parent="CanvasLayer/Canvas"]
+layout_mode = 0
+offset_right = 144.0
+offset_bottom = 12.0
+text = "Hello World!"
+label_settings = SubResource("LabelSettings_dm2qe")
+script = ExtResource("9_mv52a")
+
+[node name="HP" type="Label" parent="CanvasLayer/Canvas"]
+layout_mode = 0
+offset_top = 12.0
+offset_right = 144.0
+offset_bottom = 24.0
+text = "Hello World!"
+label_settings = SubResource("LabelSettings_dm2qe")
+script = ExtResource("10_otbr7")
+
+[node name="Score" type="Label" parent="CanvasLayer/Canvas"]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 144.0
+offset_bottom = 36.0
+text = "Hello World!"
+label_settings = SubResource("LabelSettings_dm2qe")
+script = ExtResource("11_5wxa7")

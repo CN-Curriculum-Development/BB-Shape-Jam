@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://cuxfena303qsm"]
+
+[ext_resource type="Script" uid="uid://bupur0ldnb6uc" path="res://Scripts/powerup_behavior.gd" id="1_emoe2"]
+[ext_resource type="CapsuleMesh" uid="uid://ci41buh3shm37" path="res://Assets/Meshes/powerup_mesh.tres" id="2_cyhxm"]
+[ext_resource type="Texture2D" uid="uid://clwqsdbn1g2ia" path="res://Assets/Textures/powerup_texture.tres" id="3_livb8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_livb8"]
+height = 40.0
+
+[node name="Powerup" type="RigidBody2D"]
+gravity_scale = 0.0
+freeze_mode = 1
+script = ExtResource("1_emoe2")
+
+[node name="Mesh" type="MeshInstance2D" parent="."]
+mesh = ExtResource("2_cyhxm")
+texture = ExtResource("3_livb8")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_livb8")

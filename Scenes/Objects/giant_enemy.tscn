@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://qa5o1gklquo6"]
+
+[ext_resource type="Script" uid="uid://dixbxcolho1fo" path="res://Scripts/enemy_controller.gd" id="1_6td88"]
+[ext_resource type="BoxMesh" uid="uid://uffsskrolsct" path="res://Assets/Meshes/giant_enemy_mesh.tres" id="2_6td88"]
+[ext_resource type="Texture2D" uid="uid://bg24t0pbt5cd4" path="res://Assets/Textures/giant_enemy_texture.tres" id="3_6td88"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6td88"]
+size = Vector2(60, 60)
+
+[node name="Enemy" type="RigidBody2D" groups=["Enemy"]]
+gravity_scale = 0.0
+script = ExtResource("1_6td88")
+enemy_speed = 1.5
+enemy_health = 30
+current_waypoint = null
+point_value = null
+patrol = null
+particle_size = 0.11
+particles_per_row = null
+explosion_radius = 0.4
+explosion_force = 600.0
+explosion_upward = 150.0
+enemy_texture = ExtResource("3_6td88")
+target = null
+enemy_move_direction = null
+enemy_velocity = null
+
+[node name="Mesh" type="MeshInstance2D" parent="."]
+mesh = ExtResource("2_6td88")
+texture = ExtResource("3_6td88")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6td88")
