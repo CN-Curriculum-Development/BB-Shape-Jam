@@ -1,11 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://b420jd6ybrul7"]
+[gd_scene load_steps=18 format=3 uid="uid://b420jd6ybrul7"]
 
 [ext_resource type="Script" uid="uid://cevypyow2wi83" path="res://Scripts/player_controls.gd" id="1_07780"]
 [ext_resource type="CapsuleMesh" uid="uid://ck77gcsngpo4g" path="res://Assets/Meshes/player_mesh.tres" id="1_vdr06"]
+[ext_resource type="PackedScene" uid="uid://v8sfejoh6vvv" path="res://Scenes/Objects/projectile.tscn" id="2_otbr7"]
 [ext_resource type="Texture2D" uid="uid://d3kjw0umta3m5" path="res://Assets/Textures/player_texture.tres" id="2_t355s"]
 [ext_resource type="Script" uid="uid://dh2w4tce8gtfh" path="res://Scripts/powerup_controller.gd" id="4_d31q8"]
 [ext_resource type="Script" uid="uid://d1h7a3o4mnxka" path="res://Scripts/enemy_emitter_controller.gd" id="5_d31q8"]
 [ext_resource type="Script" uid="uid://c8xv83apapk6j" path="res://Scripts/game_space_controller.gd" id="6_dmpbk"]
+[ext_resource type="PackedScene" uid="uid://bfwaxp7qxjjk8" path="res://Scenes/Objects/enemy.tscn" id="6_mv52a"]
 [ext_resource type="Script" uid="uid://dhchmep4ds4om" path="res://Scripts/star_generator.gd" id="7_r66ge"]
 [ext_resource type="FontFile" uid="uid://ccck25vsduay8" path="res://Assets/Fonts/PressStart2P.ttf" id="8_4ih0k"]
 [ext_resource type="Script" uid="uid://pfuc5mvqpnn4" path="res://Scripts/level_controller.gd" id="9_mv52a"]
@@ -28,6 +30,7 @@ font_size = 12
 [node name="Main" type="Node2D"]
 
 [node name="Main Camera" type="Camera2D" parent="."]
+position = Vector2(576, 324)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Main Camera"]
 environment = SubResource("Environment_4ih0k")
@@ -35,9 +38,16 @@ environment = SubResource("Environment_4ih0k")
 [node name="Audio Player" type="AudioStreamPlayer2D" parent="Main Camera"]
 
 [node name="Player" type="RigidBody2D" parent="." groups=["Player"]]
-position = Vector2(0, 250)
+position = Vector2(576, 574)
 gravity_scale = 0.0
+continuous_cd = 2
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_07780")
+speed = 5.0
+projectile_force = 0.1
+fire_rate = 0.1
+projectile = ExtResource("2_otbr7")
 
 [node name="Mesh" type="MeshInstance2D" parent="Player"]
 scale = Vector2(10, 10)
@@ -48,13 +58,17 @@ texture = ExtResource("2_t355s")
 shape = SubResource("CircleShape2D_07780")
 
 [node name="Powerup Emitter" type="Node2D" parent="."]
+position = Vector2(576, 324)
 script = ExtResource("4_d31q8")
 
 [node name="Enemy Controller" type="Node2D" parent="."]
-position = Vector2(0, -400)
+position = Vector2(576, -76)
 script = ExtResource("5_d31q8")
+enemy = ExtResource("6_mv52a")
+spawn_rate = 5.0
 
 [node name="Waypoints" type="Node2D" parent="."]
+position = Vector2(576, 324)
 
 [node name="Waypoint 1" type="Node2D" parent="Waypoints"]
 position = Vector2(-500, -250)
@@ -72,6 +86,7 @@ position = Vector2(-500, -50)
 position = Vector2(500, -50)
 
 [node name="Game Space" type="Area2D" parent="."]
+position = Vector2(576, 324)
 script = ExtResource("6_dmpbk")
 
 [node name="Collision" type="CollisionShape2D" parent="Game Space"]
@@ -79,6 +94,7 @@ position = Vector2(0, -50)
 shape = SubResource("RectangleShape2D_d31q8")
 
 [node name="Star Field" type="Node2D" parent="."]
+position = Vector2(576, 324)
 script = ExtResource("7_r66ge")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -115,3 +131,5 @@ offset_bottom = 36.0
 text = "Hello World!"
 label_settings = SubResource("LabelSettings_dm2qe")
 script = ExtResource("11_5wxa7")
+
+[connection signal="area_exited" from="Game Space" to="Game Space" method="OnAreaExited"]

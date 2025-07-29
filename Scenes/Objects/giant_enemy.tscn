@@ -9,21 +9,18 @@ size = Vector2(60, 60)
 
 [node name="Enemy" type="RigidBody2D" groups=["Enemy"]]
 gravity_scale = 0.0
+continuous_cd = 2
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_6td88")
 enemy_speed = 1.5
 enemy_health = 30
-current_waypoint = null
-point_value = null
-patrol = null
 particle_size = 0.11
-particles_per_row = null
+particles_per_row = 6
 explosion_radius = 0.4
 explosion_force = 600.0
 explosion_upward = 150.0
 enemy_texture = ExtResource("3_6td88")
-target = null
-enemy_move_direction = null
-enemy_velocity = null
 
 [node name="Mesh" type="MeshInstance2D" parent="."]
 mesh = ExtResource("2_6td88")

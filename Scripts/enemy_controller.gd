@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-var move_patterns = Array()
+var move_patterns = Array[Node2D]
 @export var enemy_speed: float
 @export var enemy_health: int
 @export var current_waypoint: int
@@ -15,7 +15,7 @@ var move_patterns = Array()
 @export var target: Vector2
 @export var enemy_move_direction: Vector2
 @export var enemy_velocity: Vector2
-var player_controller: Node2D
+var player: Node2D
 
 func _ready():
 	move_patterns.append(get_tree().get_root().find_node("Waypoint 1").transform())
@@ -26,10 +26,10 @@ func _ready():
 	
 	current_waypoint = randi_range(0, len(move_patterns)-1)
 	
-	player_controller = get_tree().get_root().find_node("Player")
+	player = get_tree().get_root().get_node("Main/Player")
 
 func _process(delta):
-	if player_controller.game_over:
+	if player.game_over:
 		return
 	else:
 		if current_waypoint < len(move_patterns)-1:
@@ -51,8 +51,8 @@ func _process(delta):
 		
 		if enemy_health <= 0:
 			queue_free()
-			point_value = 500 * player_controller.current_level
-			player_controller.score += point_value
+			point_value = 500 * player.current_level
+			player.score += point_value
 			
 			for x in range(0,particles_per_row):
 				for y in range(0, particles_per_row):

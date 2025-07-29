@@ -9,7 +9,9 @@ size = Vector2(40, 40)
 
 [node name="Enemy" type="RigidBody2D" groups=["Enemy"]]
 gravity_scale = 0.0
+continuous_cd = 2
 contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_ink2j")
 enemy_speed = 2.0
 enemy_health = 10
