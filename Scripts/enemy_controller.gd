@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-var move_patterns = Array[Node2D]
+var move_patterns: Array[Node2D]
 @export var enemy_speed: float
 @export var enemy_health: int
 @export var current_waypoint: int
@@ -57,17 +57,6 @@ func _process(delta):
 			for x in range(0,particles_per_row):
 				for y in range(0, particles_per_row):
 					CreatePiece(x, y)
-			
-			var explosion_pos: Vector2 = position
-			# Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
-			#    foreach (Collider hit in colliders)
-			#    {
-			#        Rigidbody rb = hit.GetComponent<Rigidbody>();
-			#        if (rb != null)
-			#        {
-			#            rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, explosionUpward);
-			#        }
-			#    }
 
 func _physics_process(delta):
 	if len(get_colliding_bodies()) > 0:

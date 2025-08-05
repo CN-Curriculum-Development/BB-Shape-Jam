@@ -43,7 +43,14 @@ func _process(delta):
 	
 	if Input.is_action_pressed("ui_accept") and (Time.get_ticks_msec() / 1000) > next_fire:
 		next_fire = Time.get_ticks_msec() / 1000
-	
+		#/*****************************\
+		#|**** Add your code below ****|
+		#\*****************************/
+			
+
+		#/*****************************\
+		#|**** Add your code above ****|
+		#\*****************************/
 	
 	
 	if player_health <= 0:

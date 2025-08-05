@@ -22,3 +22,11 @@ func _process(delta):
 	
 	if Time.get_ticks_msec() / 1000 > next_fire:
 		next_fire = (Time.get_ticks_msec() / 1000) + fire_rate
+		#/*****************************\
+		#|**** Add your code below ****|
+		#\*****************************/
+			
+
+		#/*****************************\
+		#|**** Add your code above ****|
+		#\*****************************/

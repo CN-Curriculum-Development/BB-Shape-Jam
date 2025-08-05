@@ -1,13 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://v8sfejoh6vvv"]
+[gd_scene load_steps=5 format=3 uid="uid://v8sfejoh6vvv"]
 
 [ext_resource type="Script" uid="uid://cestkafgorfie" path="res://Scripts/projectile_script.gd" id="1_dbwyx"]
 [ext_resource type="SphereMesh" uid="uid://cej1ww1d20ix2" path="res://Assets/Meshes/hazard_mesh.tres" id="1_jobfh"]
-
-[sub_resource type="Gradient" id="Gradient_m12d2"]
-colors = PackedColorArray(0, 1, 1, 1, 0, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_jobfh"]
-gradient = SubResource("Gradient_m12d2")
+[ext_resource type="Texture2D" uid="uid://djv3t380npqtq" path="res://Assets/Textures/projectile_texture.tres" id="3_dbwyx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wd3ju"]
 size = Vector2(10, 10)
@@ -18,7 +13,7 @@ script = ExtResource("1_dbwyx")
 
 [node name="Mesh" type="MeshInstance2D" parent="."]
 mesh = ExtResource("1_jobfh")
-texture = SubResource("GradientTexture1D_jobfh")
+texture = ExtResource("3_dbwyx")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_wd3ju")

@@ -13,3 +13,11 @@ func _process(delta):
 		return
 	if Time.get_ticks_msec() / 1000 > next_spawn:
 		next_spawn = (Time.get_ticks_msec() / 1000) + spawn_rate
+		#/*****************************\
+		#|**** Add your code below ****|
+		#\*****************************/
+			
+
+		#/*****************************\
+		#|**** Add your code above ****|
+		#\*****************************/
